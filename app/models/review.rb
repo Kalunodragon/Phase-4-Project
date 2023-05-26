@@ -1,4 +1,4 @@
 class Review < ApplicationRecord
-  belongs_to :user, dependant: :destroy
-  belongs_to :game, dependant: :destroy
+  belongs_to :user, dependent: :destroy
+  belongs_to :game, dependent: :destroy
 end
