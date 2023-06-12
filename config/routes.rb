@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   # User Routes
   post "/sign_up", to: "users#create"
   get "/current_user", to: "users#show"
+  post "/log_in", to: "sessions#create"
+  delete "/log_out", to: "sessions#destroy"
+
 end
