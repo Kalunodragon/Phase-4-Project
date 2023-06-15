@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post "/log_in", to: "sessions#create"
   delete "/log_out", to: "sessions#destroy"
 
+  # reviews Routes
   get "/all_thoughts", to: "reviews#index"
 end
