@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       render json: user, status: :created
     else 
-      render json: { errors: "Please check the spelling of the password. Passwords don't match." }, status: :unprocessable_entity
+      render json: { errors: "Please try again, can't proccess." }, status: :unprocessable_entity
     end
   end
 

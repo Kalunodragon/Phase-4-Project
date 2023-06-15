@@ -12,4 +12,7 @@ Rails.application.routes.draw do
 
   # reviews Routes
   get "/all_thoughts", to: "reviews#index"
+
+  # games Routes
+  get "/all_games", to: "games#index"
 end
