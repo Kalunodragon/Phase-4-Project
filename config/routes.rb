@@ -15,4 +15,5 @@ Rails.application.routes.draw do
 
   # games Routes
   get "/all_games", to: "games#index"
+  post "new_game", to: "games#create"
 end
