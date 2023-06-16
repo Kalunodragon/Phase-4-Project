@@ -3,10 +3,11 @@ class GamesController < ApplicationController
 
   def create
     if(session[:user_id])
+    # if(1+1 == 2)
       game = Game.create!(game_params)
       render json: game, status: :created
     else
-      render json: { errors "Please log-in to create a game" }, status: :unauthorized
+      render json: { errors: "Please log-in to create a game" }, status: :unauthorized
     end
   end
 
@@ -18,6 +19,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    permit.params(:game_title, :platform, :exclusive, :release_year)
+    params.permit(:game_title, :platform, :exclusive, :release_year)
   end
 end
