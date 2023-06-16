@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # reviews Routes
   post "/create_thought", to: "reviews#create"
   get "/all_thoughts", to: "reviews#index"
+  delete "/remove_thought", to: "reviews#destroy"
 
   # games Routes
   get "/all_games", to: "games#index"
