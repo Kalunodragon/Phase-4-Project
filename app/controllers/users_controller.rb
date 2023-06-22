@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(session[:user_id])
+    user = find_user
     if (params[:password] == params[:password_confirmation])
       user.update(user_params)
       render json: user, status: :ok
@@ -29,10 +29,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = find_user
+    user.destroy
+    render json: user, status: :ok
+  end
+
   private
   
   def user_params
     params.permit(:user_name, :first_name, :last_name, :email, :password, :password_confirmation, :image_url, :bio)
+  end
+
+  def find_user
+    User.find(session[:user_id])
   end
 
 end
