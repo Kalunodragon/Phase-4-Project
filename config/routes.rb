@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   delete "/log_out", to: "sessions#destroy"
 
   # reviews Routes
-  post "/create_thought", to: "reviews#create"
-  get "/all_thoughts", to: "reviews#index"
-  delete "/remove_thought", to: "reviews#destroy"
+  post "/review", to: "reviews#create"
+  get "/review", to: "reviews#index"
+  delete "/review", to: "reviews#destroy"
 
   # games Routes
-  get "/all_games", to: "games#index"
-  post "/new_game", to: "games#create"
+  get "/game", to: "games#index"
+  post "/game", to: "games#create"
 end

@@ -1,14 +1,9 @@
 class GamesController < ApplicationController
-  skip_before_action :auth
+  skip_before_action :auth, only: :index
 
   def create
-    if(session[:user_id])
-    # if(1+1 == 2)
       game = Game.create!(game_params)
       render json: game, status: :created
-    else
-      render json: { errors: "Please log-in to create a game" }, status: :unauthorized
-    end
   end
 
   def index

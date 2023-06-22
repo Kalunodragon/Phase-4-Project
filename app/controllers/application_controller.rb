@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
   def auth
     @current_user = User.find_by(id: session[:user_id])
-    render json: { errors: "No authorization found" }, status: :unauthorized unless @current_user
+    render json: { errors: "No authorization found, Please sign-in" }, status: :unauthorized unless @current_user
   end
 
   def render_not_processable(item)
