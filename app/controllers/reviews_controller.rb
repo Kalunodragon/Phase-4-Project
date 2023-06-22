@@ -21,4 +21,12 @@ class ReviewsController < ApplicationController
       render json: { errors: "Only the user that created this review can delete this review." }, status: :unauthorized
     end
   end
+
+  def update
+    game = Game.find(params[:game_id])
+    review = Review.find(params[:review_id])
+    review.update(user_id: session[:user_id], game_id: game.id, thoughts: params[:thoughts])
+    render json: review, status: :ok
+  end
+
 end

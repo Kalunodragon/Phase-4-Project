@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post "/review", to: "reviews#create"
   get "/review", to: "reviews#index"
   delete "/review", to: "reviews#destroy"
+  patch "/review", to: "reviews#update"
 
   # games Routes
   get "/game", to: "games#index"
