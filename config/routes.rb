@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   # get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 
   # User Routes
-  post "/sign_up", to: "users#create"
-  get "/current_user", to: "users#show"
+  post "/user", to: "users#create"
+  get "/user", to: "users#show"
+  patch "/user", to: "users#update"
+  delete "/user", to: "users#destroy"
+
+  # Sessions Routes
   post "/log_in", to: "sessions#create"
   delete "/log_out", to: "sessions#destroy"
 

@@ -12,7 +12,21 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @current_user
+    if(@current_user)
+      render json: @current_user
+    else
+      render json: { errors: "No user logged in" }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    user = User.find(session[:user_id])
+    if (params[:password] == params[:password_confirmation])
+      user.update(user_params)
+      render json: user, status: :ok
+    else
+      render json: { errors: "Please make sure passwords match and try again" }, status: :unprocessable_entity
+    end
   end
 
   private
@@ -20,4 +34,5 @@ class UsersController < ApplicationController
   def user_params
     params.permit(:user_name, :first_name, :last_name, :email, :password, :password_confirmation, :image_url, :bio)
   end
+
 end

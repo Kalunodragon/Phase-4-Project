@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
       thought.destroy
       render json: thought, status: :ok
     else
-      render json: { errors: "Please sign in to delete this review" }, status: :unauthorized
+      render json: { errors: "Only the user that created this review can delete this review." }, status: :unauthorized
     end
   end
 end
