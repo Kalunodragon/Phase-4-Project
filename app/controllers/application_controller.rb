@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
   private
 
   def auth
-    @current_user = User.find_by(id: session[:user_id])
+    @current_user = User.find(session[:user_id])
     render json: { errors: "No authorization found, Please sign-in" }, status: :unauthorized unless @current_user
   end
 

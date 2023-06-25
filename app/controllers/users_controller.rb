@@ -13,7 +13,9 @@ class UsersController < ApplicationController
 
   def show
     if(@current_user)
-      render json: @current_user
+      user = @current_user
+      # render json: user, serializer: UserSerializer
+      render json: user, include: [:reviews, :games]
     else
       render json: { errors: "No user logged in" }, status: :unprocessable_entity
     end
