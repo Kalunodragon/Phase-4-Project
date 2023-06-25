@@ -23,5 +23,6 @@ Rails.application.routes.draw do
   # games Routes
   get "/game", to: "games#index"
   post "/game", to: "games#create"
+  # get "/test", to: "games#show"
 
 end
