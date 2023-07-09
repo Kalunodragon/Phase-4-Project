@@ -1,6 +1,8 @@
 import React from "react";
 import NavBar from "./NavBar";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import AllGameCards from "./AllGameCards";
+import MainPage from "./MainPage";
 
 function App(){
 
@@ -10,7 +12,10 @@ function App(){
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <h1>Route Testing</h1>
+          <MainPage/>
+        </Route>
+        <Route exact path="/All-Games">
+          <AllGameCards/>
         </Route>
       </Switch>
     </div>

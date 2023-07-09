@@ -3,7 +3,11 @@ import React from "react";
 function GameCard(){
 
   return(
-    <h4>Test Name for game</h4>
+    <div>
+      <h3>Title</h3>
+      <h4>Platform</h4>
+      <p>release year and exclusive</p>
+    </div>
   )
 }
 

@@ -5,13 +5,20 @@ function NavBar(){
 
   return(
     <div className="nav-container">
-            <div className="navigation">
+            {/* {signUpLink} */}
+            <div className="main">
                 <NavLink
                     to="/"
                     exact
                     // style={}
                     // activeStyle={}
                 >Main Page</NavLink>
+            </div>
+            <div className="all-games">
+              <NavLink
+                to='/All-Games'
+                exact
+                >Games</NavLink>
             </div>
         </div>
   )
