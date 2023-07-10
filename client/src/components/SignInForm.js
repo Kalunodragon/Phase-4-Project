@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function SignInForm(){
   const empty = {
-    "username": "",
+    "user_name": "",
     "password": ""
   }
   const [formData, setFormData] = useState(empty)
@@ -20,9 +20,29 @@ function SignInForm(){
   function handleSubmit(e){
     e.preventDefault()
     console.log(formData)
-    console.log("I've been clicked")
-    console.log("clearing form")
+    sendLogIn(formData)
     setFormData(empty)
+  }
+
+  function sendLogIn(info){
+    fetch("/log_in", {
+      method: "POST",
+      headers: {
+        "Content-Type":"application/json",
+      },
+      body: JSON.stringify(info)
+    })
+    .then((res) => {
+      if(res.ok){
+        res.json()
+        .then((d) => {
+          console.log(d)
+          console.log("success")
+        })
+      } else {
+        console.log("Check Username and password and try again")
+      }
+    })
   }
 
   return(
@@ -32,8 +52,8 @@ function SignInForm(){
         <strong>User Name:</strong>
           <input
             type='text'
-            name='username'
-            value={formData.username}
+            name='user_name'
+            value={formData.user_name}
             onChange={handleChange}
             placeholder="User Name">
           </input>
