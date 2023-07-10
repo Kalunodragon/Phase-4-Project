@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
 function SignInForm(){
-  const [formData, setFormData] = useState({
+  const empty = {
     "username": "",
     "password": ""
-  })
+  }
+  const [formData, setFormData] = useState(empty)
   
   function handleChange(e){
     const location = e.target.name
@@ -18,7 +19,10 @@ function SignInForm(){
 
   function handleSubmit(e){
     e.preventDefault()
+    console.log(formData)
     console.log("I've been clicked")
+    console.log("clearing form")
+    setFormData(empty)
   }
 
   return(
