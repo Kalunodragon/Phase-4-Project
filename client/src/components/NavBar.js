@@ -20,6 +20,12 @@ function NavBar(){
                 exact
                 >Games</NavLink>
             </div>
+            <div className="sign-in">
+              <NavLink
+                to="/Sign-in"
+                exact
+                >Sign-in</NavLink>
+            </div>
         </div>
   )
 }
