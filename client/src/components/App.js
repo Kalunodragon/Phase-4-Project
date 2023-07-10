@@ -16,7 +16,6 @@ function App(){
       if(res.ok){
         res.json()
         .then((d) => setUser(d))
-        console.log(res.json())
       } else {
         setUser(null)
         console.log("there is no user signed in")
@@ -27,7 +26,7 @@ function App(){
   return(
     <div>
       <h1>Title place holder</h1>
-      {user ? <h1>{user}</h1> : <h1>Please log in</h1>}
+      {user ? <h1>{user.first_name}</h1> : <h1>Please log in</h1>}
       <NavBar />
       <Switch>
         <Route exact path="/">
