@@ -23,10 +23,24 @@ function App(){
     })
   }, [])
 
+  function signOut(){
+    fetch("/log_out",{
+      method: 'DELETE'
+    })
+    .then(setUser(null))
+  }
+
+  // if(user === null){
+  //   return(
+  //     <h1>Loading...</h1>
+  //   )
+  // }
+
   return(
     <div>
       <h1>Title place holder</h1>
       {user ? <h1>{user.first_name}</h1> : <h1>Please log in</h1>}
+      {user ? <button onClick={signOut}>LOG-OUT</button> : null}
       <NavBar />
       <Switch>
         <Route exact path="/">
