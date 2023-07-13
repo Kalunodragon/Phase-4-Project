@@ -30,6 +30,10 @@ function App(){
     .then(setUser(null))
   }
 
+  function setUserLogIn(value){
+    setUser(value)
+  }
+
   // if(user === null){
   //   return(
   //     <h1>Loading...</h1>
@@ -37,10 +41,12 @@ function App(){
   // }
 
   return(
-    <div className="main">
+    <div>
       <h1>Title place holder</h1>
-      {user ? <h1>{user.first_name}</h1> : <h1>Please log in</h1>}
-      {user ? <button onClick={signOut}>LOG-OUT</button> : null}
+      <userContext.Provider value={user}>
+        {user ? <h1>{user.first_name}</h1> : <h1>Please log in</h1>}
+        {user ? <button onClick={signOut}>LOG-OUT</button> : null}
+      </userContext.Provider>
       <NavBar />
       <Switch>
         <Route exact path="/">
@@ -50,7 +56,7 @@ function App(){
           <AllGameCards/>
         </Route>
         <Route exact path="/Sign-in">
-          <SignInForm/>
+          <SignInForm setUserLogIn={setUserLogIn}/>
         </Route>
       </Switch>
     </div>

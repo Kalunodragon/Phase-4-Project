@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SignInForm(){
+function SignInForm({ setUserLogIn }){
   const empty = {
     "user_name": "",
     "password": ""
@@ -38,6 +38,7 @@ function SignInForm(){
         .then((d) => {
           console.log(d)
           console.log("success")
+          setUserLogIn(d)
         })
       } else {
         console.log("Check Username and password and try again")
