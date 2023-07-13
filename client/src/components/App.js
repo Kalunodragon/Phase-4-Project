@@ -37,7 +37,7 @@ function App(){
   // }
 
   return(
-    <div>
+    <div className="main">
       <h1>Title place holder</h1>
       {user ? <h1>{user.first_name}</h1> : <h1>Please log in</h1>}
       {user ? <button onClick={signOut}>LOG-OUT</button> : null}
