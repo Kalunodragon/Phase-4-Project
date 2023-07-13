@@ -50,13 +50,13 @@ function SignInForm({ setUserLogIn }){
     <>
       <h1>Sign In Form component</h1>
       <form>
-        <strong>User Name:</strong>
+        <strong>Username:</strong>
           <input
             type='text'
             name='user_name'
             value={formData.user_name}
             onChange={handleChange}
-            placeholder="User Name">
+            placeholder="Username">
           </input>
         <br/>
         <strong>Password:</strong>

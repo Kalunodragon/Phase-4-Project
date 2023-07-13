@@ -9,15 +9,22 @@ export const userContext = createContext(null)
 
 function App(){
   const [user, setUser] = useState(null)
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [logCheck, setLogCheck] = useState(false)
 
   useEffect(() =>{
     fetch("/user")
     .then((res) => {
       if(res.ok){
         res.json()
-        .then((d) => setUser(d))
+        .then((d) => {
+          setUser(d)
+          setLoggedIn(true)
+          setLogCheck(true)
+        })
       } else {
         setUser(null)
+        setLogCheck(true)
         console.log("there is no user signed in")
       }
     })
@@ -32,13 +39,15 @@ function App(){
 
   function setUserLogIn(value){
     setUser(value)
+    setLoggedIn(true)
+    setLogCheck(true)
   }
 
-  // if(user === null){
-  //   return(
-  //     <h1>Loading...</h1>
-  //   )
-  // }
+  if(logCheck === false){
+    return(
+      <h1>Loading...</h1>
+    )
+  }
 
   return(
     <div>
