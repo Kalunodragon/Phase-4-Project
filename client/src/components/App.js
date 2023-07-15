@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import AllGameCards from "./AllGameCards";
 import MainPage from "./MainPage";
 import SignInForm from "./SignInForm";
+import Profile from "./Profile";
 
 export const userContext = createContext(null)
 
@@ -43,6 +44,10 @@ function App(){
     setLogCheck(true)
   }
 
+  function goToProfile(){
+    
+  }
+
   if(logCheck === false){
     return(
       <h1>Loading...</h1>
@@ -55,6 +60,7 @@ function App(){
       <userContext.Provider value={user}>
         {user ? <h1>{user.first_name}</h1> : <h1>Please log in</h1>}
         {user ? <button onClick={signOut}>LOG-OUT</button> : null}
+        {user ? <button onClick={goToProfile}>Profile</button> : null}
       </userContext.Provider>
       <NavBar />
       <Switch>
