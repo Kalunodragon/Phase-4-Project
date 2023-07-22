@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { userContext } from "./App";
 
 function Profile(){
+  const user = useContext(userContext)
 
   return(
-    <h2>Profile display section</h2>
+    <>
+      <h1>{user.first_name}'s Profile</h1>
+    </>
   )
 }
 

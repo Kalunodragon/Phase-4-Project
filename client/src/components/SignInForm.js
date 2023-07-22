@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function SignInForm({ setUserLogIn }){
+  const history = useHistory()
   const empty = {
     "user_name": "",
     "password": ""
@@ -39,6 +41,7 @@ function SignInForm({ setUserLogIn }){
           console.log(d)
           console.log("success")
           setUserLogIn(d)
+          history.push('/')
         })
       } else {
         console.log("Check Username and password and try again")

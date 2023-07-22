@@ -12,6 +12,7 @@ function App(){
   const [user, setUser] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false)
   const [logCheck, setLogCheck] = useState(false)
+  const [profileState, setProfileState] = useState(false)
 
   useEffect(() =>{
     fetch("/user")
@@ -44,8 +45,8 @@ function App(){
     setLogCheck(true)
   }
 
-  function goToProfile(){
-    
+  function showProfile(){
+    setProfileState(p => !p)
   }
 
   if(logCheck === false){
@@ -56,11 +57,12 @@ function App(){
 
   return(
     <div>
-      <h1>Title place holder</h1>
+      <h1>Game library</h1>
       <userContext.Provider value={user}>
-        {user ? <h1>{user.first_name}</h1> : <h1>Please log in</h1>}
+        {user ? <h1>Current User: {user.first_name}</h1> : <h1>Please log in</h1>}
         {user ? <button onClick={signOut}>LOG-OUT</button> : null}
-        {user ? <button onClick={goToProfile}>Profile</button> : null}
+        {user ? <button onClick={showProfile}>Manage Profile</button> : null}
+        {profileState ? <Profile /> : null}
       </userContext.Provider>
       <NavBar />
       <Switch>
