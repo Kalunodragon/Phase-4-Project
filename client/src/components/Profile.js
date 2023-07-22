@@ -19,13 +19,14 @@ function Profile(){
         <>
           <h3>EDITING USER PROFILE</h3>
           <form>
-            <input
-              type='text'
-              name='user_name'
-              // value={formData.user_name}
-              // onChange={handleChange}
-              placeholder="Username">
-            </input>
+            <strong>Username:</strong>
+              <input
+                type='text'
+                name='user_name'
+                // value={formData.user_name}
+                // onChange={handleChange}
+                placeholder="Username">
+              </input>
           </form>
         </>:
         <>
