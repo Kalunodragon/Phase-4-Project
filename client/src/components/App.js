@@ -12,7 +12,7 @@ function App(){
   const [user, setUser] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false)
   const [logCheck, setLogCheck] = useState(false)
-  const [profileState, setProfileState] = useState(false)
+  const [showProfileState, setShowProfileState] = useState(false)
 
   useEffect(() =>{
     fetch("/user")
@@ -46,7 +46,7 @@ function App(){
   }
 
   function showProfile(){
-    setProfileState(p => !p)
+    setShowProfileState(p => !p)
   }
 
   if(logCheck === false){
@@ -61,21 +61,27 @@ function App(){
       <userContext.Provider value={user}>
         {user ? <h1>Current User: {user.first_name}</h1> : <h1>Please log in</h1>}
         {user ? <button onClick={signOut}>LOG-OUT</button> : null}
-        {user ? <button onClick={showProfile}>Manage Profile</button> : null}
-        {profileState ? <Profile /> : null}
+        {user ? 
+          (showProfileState ? 
+          <button onClick={showProfile}>Hide Profile</button> :
+          <button onClick={showProfile}>Manage Profile</button>) :
+           null}
+        {showProfileState ? <Profile /> :
+      <>
+        <NavBar />
+        <Switch>
+          <Route exact path="/">
+            <MainPage/>
+          </Route>
+          <Route exact path="/All-Games">
+            <AllGameCards/>
+          </Route>
+          <Route exact path="/Sign-in">
+            <SignInForm setUserLogIn={setUserLogIn}/>
+          </Route>
+        </Switch>
+      </>}
       </userContext.Provider>
-      <NavBar />
-      <Switch>
-        <Route exact path="/">
-          <MainPage/>
-        </Route>
-        <Route exact path="/All-Games">
-          <AllGameCards/>
-        </Route>
-        <Route exact path="/Sign-in">
-          <SignInForm setUserLogIn={setUserLogIn}/>
-        </Route>
-      </Switch>
     </div>
   )
 }
