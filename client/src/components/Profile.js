@@ -38,6 +38,22 @@ function Profile(){
         <>
           <h3>EDITING USER PROFILE</h3>
           <form>
+            <strong>First Name: </strong>
+              <input
+                type='text'
+                name='first_name'
+                value={formData.first_name}
+                onChange={handleFormChange}>
+              </input>
+            <br/>
+            <strong>Last Name: </strong>
+              <input
+                type='text'
+                name='last_name'
+                value={formData.last_name}
+                onChange={handleFormChange}>
+              </input>
+            <br/>
             <strong>Username: </strong>
               <input
                 type='text'
@@ -45,6 +61,16 @@ function Profile(){
                 value={formData.user_name}
                 onChange={handleFormChange}>
               </input>
+            <br/>
+            <strong>Profile Image: </strong>
+              <input
+                type='text'
+                name='image_url'
+                value={formData.image_url}
+                onChange={handleFormChange}>
+              </input>
+              <br/>
+            <img className="profile-photo" src={formData.image_url} alt="Profile"/>
           </form>
         </>:
         <>
