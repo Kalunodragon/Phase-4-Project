@@ -30,6 +30,7 @@ function App(){
         console.log("there is no user signed in")
       }
     })
+    .catch(err => console.log(err))
   }, [])
 
   function signOut(){
