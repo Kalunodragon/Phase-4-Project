@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { userContext } from "./App";
 
 function SignInForm({ setUserLogIn }){
   const history = useHistory()
+  const user = useContext(userContext)
   const empty = {
     "user_name": "",
     "password": ""
@@ -47,6 +49,12 @@ function SignInForm({ setUserLogIn }){
         console.log("Check Username and password and try again")
       }
     })
+  }
+
+  if(user){
+    return(
+      <h3>{user.first_name} is already signed in. If this is not you please Log out and sign in!</h3>
+    )
   }
 
   return(
