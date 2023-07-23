@@ -68,7 +68,7 @@ function App(){
           <button onClick={showProfile}>Hide Profile</button> :
           <button onClick={showProfile}>Manage Profile</button>) :
            null}
-        {showProfileState ? <Profile /> :
+        {showProfileState ? <Profile setUser={setUser}/> :
       <>
         <NavBar />
         <Switch>

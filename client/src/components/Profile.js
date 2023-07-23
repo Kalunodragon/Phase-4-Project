@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { userContext } from "./App";
 
-function Profile(){
+function Profile({ setUser }){
   const user = useContext(userContext)
   const [showEditForm, setShowEditForm] = useState(false)
   
@@ -10,7 +10,9 @@ function Profile(){
     "first_name": user.first_name,
     "last_name": user.last_name,
     "email": user.email,
-    "image_url": user.image_url
+    "image_url": user.image_url,
+    "password": '',
+    "password_confirmation": ''
   }
   const [formData, setFormData] = useState(prefilledFormInfo)
 
@@ -28,6 +30,27 @@ function Profile(){
     })
   }
 
+  function handleSubmit(e){
+    e.preventDefault()
+    console.log(formData)
+    fetch("/user",{
+      method: "PATCH",
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(res => {
+      if(res.ok){
+        res.json()
+        .then(d => setUser(d))
+        .then(setShowEditForm(false))
+      } else {
+        console.log("response not ok")
+      }
+    }).catch(err => console.log(err))
+  }
+
   return(
     <div>
       {showEditForm ?  
@@ -37,7 +60,7 @@ function Profile(){
       {showEditForm ?
         <>
           <h3>EDITING USER PROFILE</h3>
-          <form>
+          <form onSubmit={handleSubmit}>
             <strong>First Name: </strong>
               <input
                 type='text'
@@ -61,6 +84,22 @@ function Profile(){
                 value={formData.user_name}
                 onChange={handleFormChange}>
               </input>
+            <p>Please either re-enter previous password to confirm changes or create a new password.</p>
+            <strong>Password: </strong>
+              <input
+                type='password'
+                name='password'
+                value={formData.password}
+                onChange={handleFormChange}>
+              </input>
+            <br/>
+            <strong>Confirm Password: </strong>
+              <input
+                type='password'
+                name='password_confirmation'
+                value={formData.password_confirmation}
+                onChange={handleFormChange}>
+              </input>
             <br/>
             <strong>Profile Image: </strong>
               <input
@@ -71,6 +110,8 @@ function Profile(){
               </input>
               <br/>
             <img className="profile-photo" src={formData.image_url} alt="Profile"/>
+            <br/>
+            <button>Submit</button>
           </form>
         </>:
         <>
@@ -79,6 +120,7 @@ function Profile(){
           <p>Name: {user.first_name} {user.last_name}</p>
           <p>Email: {user.email}</p>
           <p>Username: {user.user_name}</p>
+          <p>Bio: {user.bio}</p>
           <img className="profile-photo" src={user.image_url} alt="Profile"/>
         </>
       }
