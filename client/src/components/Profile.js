@@ -32,6 +32,10 @@ function Profile(){
         <>
           <h3>User Profile</h3>
           <h1>{user.first_name}'s Profile</h1>
+          <p>Name: {user.first_name} {user.last_name}</p>
+          <p>Email: {user.email}</p>
+          <p>Username: {user.user_name}</p>
+          <img className="profile-photo" src={user.image_url} alt="Profile"/>
         </>
       }
     </div>

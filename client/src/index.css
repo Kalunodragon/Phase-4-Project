@@ -16,3 +16,8 @@ code {
   background-color: grey;
   margin: 0;
 }
+
+.profile-photo {
+  width: 250px;
+  height: max-content 250px;
+}
