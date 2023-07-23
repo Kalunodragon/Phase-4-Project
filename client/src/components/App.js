@@ -37,6 +37,7 @@ function App(){
     fetch("/log_out",{
       method: 'DELETE'
     })
+    .then(setShowProfileState(false))
     .then(setUser(null))
   }
 
