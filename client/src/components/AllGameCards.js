@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import GameCard from './GameCard'
 
 function AllGameCards(){
   const [games, setGames] = useState(null)
@@ -28,8 +29,17 @@ function AllGameCards(){
     )
   }
 
+  const gamesToDisplay = games.map(game => {
+    return(
+      <GameCard game={game} key={game.id}/>
+    )
+  })
+
   return(
-    <h1>List of game card components</h1>
+    <>
+      <h1>List of game card components</h1>
+      {gamesToDisplay}
+    </>
   )
 }
 

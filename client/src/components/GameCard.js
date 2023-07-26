@@ -1,6 +1,8 @@
 import React from "react";
 
-function GameCard(){
+function GameCard({ game }){
+
+console.log(game)
 
   return(
     <div>
