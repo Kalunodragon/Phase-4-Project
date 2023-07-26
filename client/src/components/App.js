@@ -10,7 +10,6 @@ export const userContext = createContext(null)
 
 function App(){
   const [user, setUser] = useState(null)
-  // const [loggedIn, setLoggedIn] = useState(false)
   const [logCheck, setLogCheck] = useState(false)
   const [showProfileState, setShowProfileState] = useState(false)
 
@@ -21,7 +20,6 @@ function App(){
         res.json()
         .then((d) => {
           setUser(d)
-          // setLoggedIn(true)
           setLogCheck(true)
         })
       } else {
@@ -43,7 +41,6 @@ function App(){
 
   function setUserLogIn(value){
     setUser(value)
-    // setLoggedIn(true)
     setLogCheck(true)
   }
 
