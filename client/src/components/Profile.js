@@ -11,6 +11,7 @@ function Profile({ setUser }){
     "last_name": user.last_name,
     "email": user.email,
     "image_url": user.image_url,
+    "bio": user.bio,
     "password": '',
     "password_confirmation": ''
   }
@@ -84,11 +85,21 @@ function Profile({ setUser }){
                 value={formData.user_name}
                 onChange={handleFormChange}>
               </input>
+            <br/>
+            <strong>Bio: </strong>
+              <textarea
+                type='textarea'
+                rows={5}
+                name='bio'
+                value={formData.bio}
+                onChange={handleFormChange}>
+              </textarea>
             <p>Please either re-enter previous password to confirm changes or create a new password.</p>
             <strong>Password: </strong>
               <input
                 type='password'
                 name='password'
+                required={true}
                 value={formData.password}
                 onChange={handleFormChange}>
               </input>
@@ -97,6 +108,7 @@ function Profile({ setUser }){
               <input
                 type='password'
                 name='password_confirmation'
+                required={true}
                 value={formData.password_confirmation}
                 onChange={handleFormChange}>
               </input>
