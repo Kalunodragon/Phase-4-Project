@@ -3,8 +3,8 @@ import NavBar from "./NavBar";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import AllGameCards from "./AllGameCards";
 import MainPage from "./MainPage";
-import SignInForm from "./SignInForm";
 import Profile from "./Profile";
+import SignInSignUp from "./SignInSignUp";
 
 export const userContext = createContext(null)
 
@@ -76,7 +76,7 @@ function App(){
             <AllGameCards/>
           </Route>
           <Route exact path="/Sign-in">
-            <SignInForm setUserLogIn={setUserLogIn}/>
+            <SignInSignUp setUserLogIn={setUserLogIn}/>
           </Route>
         </Switch>
       </>}
