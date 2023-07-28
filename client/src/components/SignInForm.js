@@ -59,7 +59,6 @@ function SignInForm({ setUserLogIn }){
 
   return(
     <>
-      <h1>Sign In Form component</h1>
       <form>
         <strong>Username:</strong>
           <input
