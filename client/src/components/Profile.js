@@ -44,8 +44,11 @@ function Profile({ setUser }){
     .then(res => {
       if(res.ok){
         res.json()
-        .then(d => setUser(d))
-        .then(setShowEditForm(false))
+        .then(d => {
+          setUser(d)
+          setShowEditForm(false)
+          setFormData(prefilledFormInfo)
+        })
       } else {
         console.log("response not ok")
       }

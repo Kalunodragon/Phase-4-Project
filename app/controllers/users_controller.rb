@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       render json: user, serializer: UserSerializer
       # render json: user, include: [:reviews, :games]
     else
-      render json: { errors: "No user logged in" }, status: :unprocessable_entity
+      render json: { errors: "No user logged in" }, status: :no_content
     end
   end
 
