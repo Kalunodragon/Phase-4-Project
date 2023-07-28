@@ -12,7 +12,7 @@ function SignInSignUp({setUserLogIn}){
   return(
     <>
       <h1>Sign-{change ? "in" : "up"}</h1>
-      {change ? <SignInForm setUserLogIn={setUserLogIn}/> : <SignUpForm />}
+      {change ? <SignInForm setUserLogIn={setUserLogIn}/> : <SignUpForm setUserLogIn={setUserLogIn}/>}
       <button onClick={handleButtonClick}>Switch to Sign-{change ? "up" : "in"}</button>
     </>
   )
