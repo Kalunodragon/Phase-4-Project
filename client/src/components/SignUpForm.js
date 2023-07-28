@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function SignUpForm(){
+function SignUpForm({ setUserLogIn }){
+  const history = useHistory()
   const emptyFormData = {
     "first_name":"",
     "last_name":"",
     "user_name":"",
+    "email":"",
     "bio":"",
     "password":"",
     "password_confirmation":"",
@@ -24,6 +27,26 @@ function SignUpForm(){
 
   function handleSubmit(e){
     e.preventDefault()
+    fetch("/user",{
+      method: "POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then((res =>{
+      if(res.ok){
+        res.json()
+        .then((d) => {
+          console.log(d)
+          setUserLogIn(d)
+        })
+        .then(history.push('/'))
+      } else {
+        console.log("there was an issue with a sign up")
+      }
+    }))
+    .catch(err => console.log(err))
   }
 
   return(
@@ -51,6 +74,14 @@ function SignUpForm(){
                 type='text'
                 name='user_name'
                 value={formData.user_name}
+                onChange={handleChange}>
+              </input>
+            <br/>
+            <strong>Email: </strong>
+              <input
+                type='text'
+                name='email'
+                value={formData.email}
                 onChange={handleChange}>
               </input>
             <br/>
