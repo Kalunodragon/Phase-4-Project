@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ReviewCard from "./ReviewCard";
 
 function GameCard({ game }){
+  const [reviewState, setReviewState] = useState(game.reviews)
 
-  const reviews = game.reviews.map(rev =>{
+  const reviewsToShow = reviewState.map(rev =>{
     return(
       <ReviewCard rev={rev} key={rev.created_at}/>
     )
@@ -17,7 +18,8 @@ function GameCard({ game }){
       <p>release year: {game.release_year}</p>
       <div className="review-div">
         <h4>Reviews</h4>
-        {reviews}
+        <button>Create Review</button>
+        {reviewsToShow}
       </div>
     </div>
   )

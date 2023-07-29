@@ -8,6 +8,7 @@ function ReviewCard({ rev }){
     <div className="review-div">
       <p>Thought created at: {rev.created_at} -- {rev.thoughts}</p>
       {user ? user.id === rev.user_id ? <button>Delete</button> : null : null}
+      {user ? user.id === rev.user_id ? <button>Edit</button> : null : null}
     </div>
   )
 }
