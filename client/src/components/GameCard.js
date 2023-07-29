@@ -16,6 +16,7 @@ function GameCard({ game }){
       <h4>Platform: {game.platform}</h4>
       <p>release year: {game.release_year}</p>
       <div className="review-div">
+        <h4>Reviews</h4>
         {reviews}
       </div>
     </div>

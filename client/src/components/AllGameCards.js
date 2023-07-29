@@ -37,7 +37,7 @@ function AllGameCards(){
 
   return(
     <>
-      <h1>List of game card components</h1>
+      <h1>List of all games</h1>
       {gamesToDisplay}
     </>
   )
