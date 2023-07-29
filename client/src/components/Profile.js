@@ -31,6 +31,15 @@ function Profile({ setUser }){
     })
   }
 
+  function handleDelete(){
+    let choice = window.confirm(`${user.first_name}, your account will be deleted if you continue!`)
+    if(choice === true){
+      fetch('/user',{
+        method: "DELETE"
+      })
+    }
+  }
+
   function handleSubmit(e){
     e.preventDefault()
     console.log(formData)
@@ -61,6 +70,7 @@ function Profile({ setUser }){
         <button onClick={handleEditButton}>Exit Edit</button> :
         <button onClick={handleEditButton}>Edit Profile</button>
       }
+      {showEditForm ? <button onClick={handleDelete}>Delete Profile</button> : null}
       {showEditForm ?
         <>
           <h3>EDITING USER PROFILE</h3>
