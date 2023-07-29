@@ -21,3 +21,20 @@ code {
   width: 250px;
   height: max-content 250px;
 }
+
+.game-card {
+  border: 3px;
+  border-style: solid;
+  border-color: lightgrey;
+  margin: 15px;
+  padding: 10px;
+}
+
+.review-div {
+  border: 3px;
+  border-style: solid;
+  border-color: white;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}

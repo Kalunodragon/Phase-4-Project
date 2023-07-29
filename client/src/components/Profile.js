@@ -37,6 +37,7 @@ function Profile({ setUser }){
       fetch('/user',{
         method: "DELETE"
       })
+      .then(window.alert(`${user.first_name}, your account has been succesfully deleted.`))
     }
   }
 
