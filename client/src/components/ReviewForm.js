@@ -46,13 +46,14 @@ function ReviewForm({ game, setReviews }){
     <div className="review-form">
       <form onSubmit={handleSubmit}>
         <strong>Review: </strong>
-        <input
-          type='text'
+        <textarea
+          type='textarea'
           name='thoughts'
+          rows={5}
           value={formData.thoughts}
           onChange={handleChange}
           >
-        </input>
+        </textarea>
         <button>Submit</button>
       </form>
     </div>
