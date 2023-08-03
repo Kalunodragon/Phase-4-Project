@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import ReviewCard from "./ReviewCard";
+import ReviewForm from "./ReviewForm";
 
 function GameCard({ game }){
   const [reviewState, setReviewState] = useState(game.reviews)
+  const [showCreateReview, setShowCreateReview] = useState(false)
 
   const reviewsToShow = reviewState.map(rev =>{
     return(
       <ReviewCard rev={rev} key={rev.created_at}/>
     )
   })
+
+  function createReview(){
+    setShowCreateReview(v => !v)
+  }
 
   return(
     <div className="game-card">
@@ -18,7 +24,10 @@ function GameCard({ game }){
       <p>release year: {game.release_year}</p>
       <div className="review-div">
         <h4>Reviews</h4>
-        <button>Create Review</button>
+        {showCreateReview ?
+          <button onClick={createReview}>Hide Create Review</button> :
+          <button onClick={createReview}>Create Review</button>}
+        {showCreateReview ? <ReviewForm game={game}/> : null}
         {reviewsToShow}
       </div>
     </div>
