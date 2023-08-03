@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ReviewForm({ game }){
+function ReviewForm({ game, setReviews }){
   const emptyForm = {
     "game_id": game.id,
     "thoughts":""
@@ -18,17 +18,42 @@ function ReviewForm({ game }){
     })
   }
 
+  function handleSubmit(e){
+    e.preventDefault()
+    fetch('/review',{
+      method: "POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then((res) =>{
+      if(res.ok){
+        res.json()
+        .then((d)=>{
+          console.log(d)
+          setReviews(d)
+          setFormData(emptyForm)
+        })
+      } else {
+        console.log("There was an issue with the Review creation")
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
   return(
     <div className="review-form">
-      <form>
+      <form onSubmit={handleSubmit}>
         <strong>Review: </strong>
         <input
           type='text'
-          name='review'
+          name='thoughts'
           value={formData.thoughts}
           onChange={handleChange}
           >
         </input>
+        <button>Submit</button>
       </form>
     </div>
   )

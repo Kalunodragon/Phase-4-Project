@@ -16,6 +16,11 @@ function GameCard({ game }){
     setShowCreateReview(v => !v)
   }
 
+  function setReviews(newReview){
+    const newState = [...reviewState, newReview]
+    setReviewState(newState)
+  }
+
   return(
     <div className="game-card">
       <h3>Title: {game.game_title}</h3>
@@ -27,7 +32,7 @@ function GameCard({ game }){
         {showCreateReview ?
           <button onClick={createReview}>Hide Create Review</button> :
           <button onClick={createReview}>Create Review</button>}
-        {showCreateReview ? <ReviewForm game={game}/> : null}
+        {showCreateReview ? <ReviewForm game={game} setReviews={setReviews}/> : null}
         {reviewsToShow}
       </div>
     </div>
