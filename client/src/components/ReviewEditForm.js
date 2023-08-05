@@ -37,6 +37,8 @@ function ReviewEditForm({ rev, setReviews, setEditState }){
             setReviews(d)
             setEditState()
           })
+        } else {
+          console.log("There was an error with the update")
         }
       })
     }
