@@ -5,6 +5,7 @@ import ReviewEditForm from "./ReviewEditForm";
 function ReviewCard({ rev, setFilteredReviews, setReviews }){
   const user = useContext(userContext)
   const [editState, setEditState] = useState(false)
+  const tagName = ((user ? user.id : null) === rev.user_id ? "logged-in-div" : "review-div")
 
   function handleDelete(){
     // console.log(rev.id)
@@ -35,7 +36,7 @@ function ReviewCard({ rev, setFilteredReviews, setReviews }){
   }
 
   return(
-    <div className="review-div">
+    <div className={tagName}>
       {editState ?
         <ReviewEditForm rev={rev} setReviews={setReviews} setEditState={setEditState}/> :
         <p>Thought created at: {rev.created_at} -- {rev.thoughts}</p>}

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
+import { userContext } from "./App";
 
 function GameCard({ game }){
+  const user = useContext(userContext)
   const [reviewState, setReviewState] = useState(game.reviews)
   const [showCreateReview, setShowCreateReview] = useState(false)
 
@@ -45,9 +47,11 @@ function GameCard({ game }){
       <p>release year: {game.release_year}</p>
       <div className="review-div">
         <h4>Reviews</h4>
-        {showCreateReview ?
+        {user ? 
+          showCreateReview ?
           <button onClick={createReview}>Hide Create Review</button> :
-          <button onClick={createReview}>Create Review</button>}
+          <button onClick={createReview}>Create Review</button>
+        : null}
         {showCreateReview ? <ReviewForm game={game} setReviews={setReviews} handleState={createReview}/> : null}
         {reviewsToShow}
       </div>
