@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { userContext } from "./App";
 import ReviewEditForm from "./ReviewEditForm";
 
-function ReviewCard({ rev, setFilteredReviews }){
+function ReviewCard({ rev, setFilteredReviews, setReviews }){
   const user = useContext(userContext)
   const [editState, setEditState] = useState(false)
 
@@ -36,7 +36,9 @@ function ReviewCard({ rev, setFilteredReviews }){
 
   return(
     <div className="review-div">
-      {editState ? <ReviewEditForm rev={rev}/> : <p>Thought created at: {rev.created_at} -- {rev.thoughts}</p>}
+      {editState ?
+        <ReviewEditForm rev={rev} setReviews={setReviews} setEditState={setEditState}/> :
+        <p>Thought created at: {rev.created_at} -- {rev.thoughts}</p>}
       {user ? user.id === rev.user_id ? <button onClick={handleDelete}>Delete</button> : null : null}
       {user ? user.id === rev.user_id ? <button onClick={showEdit}>{editState ? "Hide Edit" : "Edit"}</button> : null : null}
     </div>

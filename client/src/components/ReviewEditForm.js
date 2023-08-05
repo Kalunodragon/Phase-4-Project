@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
-function ReviewEditForm({ rev }){
+function ReviewEditForm({ rev, setReviews, setEditState }){
   const prefilledInfo = {
-    "thoughts": rev.thoughts
+    "game_id": rev.game_id,
+    "thoughts": rev.thoughts,
+    "review_id": rev.id
   }
   const [formData, setFormData] = useState(prefilledInfo)
 
@@ -16,9 +18,33 @@ function ReviewEditForm({ rev }){
     })
   }
 
+  function handleSubmit(e){
+    e.preventDefault()
+    const answer = window.confirm(`Change review from: ${rev.thoughts} \n\nTo: ${formData.thoughts}`)
+    if(answer === true){
+      fetch('/review',{
+        method: "PATCH",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+      .then((res)=>{
+        if(res.ok){
+          res.json()
+          .then((d)=>{
+            console.log(d)
+            setReviews(d)
+            setEditState()
+          })
+        }
+      })
+    }
+  }
+
   return(
     <div className="review-edit-div">
-      <form>
+      <form onSubmit={handleSubmit}>
         <textarea
         className="textarea"
         type='text'
@@ -31,7 +57,6 @@ function ReviewEditForm({ rev }){
         <button>Submit</button>
       </form>
     </div>
-    // Set up a form that is prefilled with review info that already exsists, then edit that form and resubmit it
   )
 }
 
