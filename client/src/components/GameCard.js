@@ -8,7 +8,7 @@ function GameCard({ game }){
 
   const reviewsToShow = reviewState.map(rev =>{
     return(
-      <ReviewCard rev={rev} key={rev.created_at}/>
+      <ReviewCard rev={rev} key={rev.created_at} setFilteredReviews={setFilteredReviews}/>
     )
   })
 
@@ -19,6 +19,11 @@ function GameCard({ game }){
   function setReviews(newReview){
     const newState = [...reviewState, newReview]
     setReviewState(newState)
+  }
+
+  function setFilteredReviews(revToRemove){
+    const newRevState = reviewState.filter(rev => rev.id !== revToRemove.id)
+    setReviewState(newRevState)
   }
 
   return(
@@ -32,7 +37,7 @@ function GameCard({ game }){
         {showCreateReview ?
           <button onClick={createReview}>Hide Create Review</button> :
           <button onClick={createReview}>Create Review</button>}
-        {showCreateReview ? <ReviewForm game={game} setReviews={setReviews}/> : null}
+        {showCreateReview ? <ReviewForm game={game} setReviews={setReviews} handleState={createReview}/> : null}
         {reviewsToShow}
       </div>
     </div>

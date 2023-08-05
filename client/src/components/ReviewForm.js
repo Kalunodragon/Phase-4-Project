@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ReviewForm({ game, setReviews }){
+function ReviewForm({ game, setReviews, handleState }){
   const emptyForm = {
     "game_id": game.id,
     "thoughts":""
@@ -34,6 +34,7 @@ function ReviewForm({ game, setReviews }){
           console.log(d)
           setReviews(d)
           setFormData(emptyForm)
+          handleState()
         })
       } else {
         console.log("There was an issue with the Review creation")
