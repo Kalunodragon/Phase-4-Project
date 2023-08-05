@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import GameCard from './GameCard'
+import GameForm from "./GameForm";
+import { userContext } from "./App";
 
 function AllGameCards(){
+  const user = useContext(userContext)
   const [games, setGames] = useState(null)
   const [gameCheck, setGameCheck] = useState(false)
+  const [addGame, setAddGame] = useState(false)
 
   useEffect(()=>{
     fetch('/game')
@@ -35,10 +39,20 @@ function AllGameCards(){
     )
   })
 
+  function handleAddGame(){
+    setAddGame(v => !v)
+  }
+
   return(
     <>
-      <h1>List of all games</h1>
-      {gamesToDisplay}
+      {addGame ? <h1>Game to add</h1> : <h1>List of all games</h1>}
+      {user ?
+        addGame ?
+        <button onClick={handleAddGame}>Back To All Games</button> :
+        <button onClick={handleAddGame}>Add Game</button>
+      : null}
+      {addGame ? <GameForm /> : gamesToDisplay}
+      {/* {gamesToDisplay} */}
     </>
   )
 }
