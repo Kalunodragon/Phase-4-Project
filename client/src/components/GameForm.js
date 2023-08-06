@@ -27,9 +27,14 @@ function GameForm(){
     })
   }
 
+  function handleSubmit(e){
+    e.preventDefault()
+    // finish setting up POST Fetch for adding a game to '/game'
+  }
+
   return(
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <strong>Title: </strong>
           <input
             type='text'
