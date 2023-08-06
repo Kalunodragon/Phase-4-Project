@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function GameForm(){
+function GameForm({ handleAddGame, setGames }){
   const emptyForm = {
     'game_title' : '',
     'platform' : '',
@@ -29,7 +29,32 @@ function GameForm(){
 
   function handleSubmit(e){
     e.preventDefault()
-    // finish setting up POST Fetch for adding a game to '/game'
+    
+    // const formDataToSubmit = {
+    //   'game_title' : formData.game_title,
+    //   'platform' : formData.platform,
+    //   'exclusive' : (formData.exclusive === false ? 0 : 1),
+    //   'release_year' : formData.
+    // }
+
+    fetch('/game',{
+      method: "POST",
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then((res) => {
+      if(res.ok){
+        res.json()
+        .then((d) => {
+          // console.log(d)
+          setGames(d)
+          setFormData(emptyForm)
+          handleAddGame()
+        })
+      }
+    })
   }
 
   return(

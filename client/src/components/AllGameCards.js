@@ -43,6 +43,10 @@ function AllGameCards(){
     setAddGame(v => !v)
   }
 
+  function addGameToList(gameToAdd){
+    setGames([...games, gameToAdd])
+  }
+
   return(
     <>
       {addGame ? <h1>Game to add</h1> : <h1>List of all games</h1>}
@@ -51,7 +55,7 @@ function AllGameCards(){
         <button onClick={handleAddGame}>Back To All Games</button> :
         <button onClick={handleAddGame}>Add Game</button>
       : null}
-      {addGame ? <GameForm /> : gamesToDisplay}
+      {addGame ? <GameForm handleAddGame={handleAddGame} setGames={addGameToList}/> : gamesToDisplay}
       {/* {gamesToDisplay} */}
     </>
   )
