@@ -57,7 +57,6 @@ function GameForm(){
         <strong>Release Year: </strong>
           <input
             type='number'
-            
             name='release_year'
             value={formData.release_year}
             onChange={handleChange}>
