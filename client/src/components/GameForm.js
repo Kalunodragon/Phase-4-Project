@@ -66,6 +66,8 @@ function GameForm(){
             value={formData.release_year}
             onChange={handleChange}>
           </input>
+        <br/>
+        <button>Submit</button>
       </form>
     </div>
   )
