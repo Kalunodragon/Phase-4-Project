@@ -31,16 +31,16 @@ function ReviewForm({ game, setReviews, handleState }){
       if(res.ok){
         res.json()
         .then((d)=>{
-          console.log(d)
+          // console.log(d)
           setReviews(d)
           setFormData(emptyForm)
           handleState()
         })
       } else {
-        console.log("There was an issue with the Review creation")
+        window.alert("There was an issue with the review creation on the server, please try again!")
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => window.alert(err))
   }
 
   return(

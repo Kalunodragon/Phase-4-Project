@@ -28,6 +28,7 @@ function ReviewCard({ rev, setFilteredReviews, setReviews }){
           })
         }
       })
+      .catch(err => window.alert(err))
     }
   }
 

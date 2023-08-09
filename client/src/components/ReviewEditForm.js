@@ -33,14 +33,15 @@ function ReviewEditForm({ rev, setReviews, setEditState }){
         if(res.ok){
           res.json()
           .then((d)=>{
-            console.log(d)
+            // console.log(d)
             setReviews(d)
             setEditState()
           })
         } else {
-          console.log("There was an error with the update")
+          window.alert("There was an error with the update on the server, please try again!")
         }
       })
+      .catch((err) => window.alert(err))
     }
   }
 

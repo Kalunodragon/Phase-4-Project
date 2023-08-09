@@ -40,15 +40,16 @@ function SignInForm({ setUserLogIn }){
       if(res.ok){
         res.json()
         .then((d) => {
-          console.log(d)
-          console.log("success")
+          // console.log(d)
+          // console.log("success")
           setUserLogIn(d)
           history.push('/')
         })
       } else {
-        console.log("Check Username and password and try again")
+        window.alert("Check Username and password and try again!")
       }
     })
+    .catch((err) => window.alert(err))
   }
 
   if(user){

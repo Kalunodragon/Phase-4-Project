@@ -43,10 +43,10 @@ function SignUpForm({ setUserLogIn }){
         })
         .then(history.push('/'))
       } else {
-        console.log("there was an issue with a sign up")
+        window.alert("There was an issue with a sign up on the server, please try again!")
       }
     }))
-    .catch(err => console.log(err))
+    .catch(err => window.alert(err))
   }
 
   return(

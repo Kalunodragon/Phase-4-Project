@@ -43,7 +43,7 @@ function Profile({ setUser }){
 
   function handleSubmit(e){
     e.preventDefault()
-    console.log(formData)
+    // console.log(formData)
     fetch("/user",{
       method: "PATCH",
       headers: {
@@ -60,9 +60,9 @@ function Profile({ setUser }){
           setFormData(prefilledFormInfo)
         })
       } else {
-        console.log("response not ok")
+        window.alert("Error with updating users information on server, please try again!")
       }
-    }).catch(err => console.log(err))
+    }).catch(err => window.alert(err))
   }
 
   return(

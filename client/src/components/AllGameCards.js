@@ -15,13 +15,13 @@ function AllGameCards(){
       if(res.ok){
         res.json()
         .then((d)=>{
-          console.log(d)
+          // console.log(d)
           setGames(d)
           setGameCheck(true)
         })
       } else {
         setGameCheck(true)
-        console.log("there was an error checking the games")
+        window.alert("There was an error checking the games, please try reloading the page!")
       }
     })
     .catch(err => console.log(err))

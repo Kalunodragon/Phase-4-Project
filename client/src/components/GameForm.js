@@ -53,8 +53,11 @@ function GameForm({ handleAddGame, setGames }){
           setFormData(emptyForm)
           handleAddGame()
         })
+      } else {
+        window.alert("There was an issue creating a game on the server, please try again")
       }
     })
+    .catch((err) => window.alert(err))
   }
 
   return(

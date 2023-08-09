@@ -25,10 +25,10 @@ function App(){
       } else {
         setUser(null)
         setLogCheck(true)
-        console.log("there is no user signed in")
+        // console.log("there is no user signed in")
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => window.alert(err))
   }, [])
 
   function signOut(){
