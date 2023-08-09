@@ -12,7 +12,11 @@ The app should load up on the main page, this page should give a breif overview 
 - Fork and clone this project to your environment
 - Navigate into the Projects Directory
 - Run `bundle` & `npm install && npm start -prefix client`
-- In a seperate terminal you will need to run (First time loading `rails db:create db:migrate db:seed`) and `rails s` to start up the server.
+- In a seperate terminal you will need to run `rails s` to start up the server.
+
+You may need to initiate a db with `rails db:create`, if so then you will also need to run `rails db:migrate` to have the models all migrate. This should only have to be done on the initial set up of the application.
 
 The steps above should host the app locally as well as open a browser window for it to be displayed in. Should be `http://localhost:4000/`
+
+
 
