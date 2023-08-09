@@ -44,12 +44,13 @@ function AllGameCards(){
   }
 
   function addGameToList(gameToAdd){
-    setGames([...games, gameToAdd])
+    setGames([gameToAdd, ...games])
   }
 
   return(
     <>
       {addGame ? <h1>Game to add</h1> : <h1>List of all games</h1>}
+      {/* Build search or sort feature for ease of use */}
       {user ?
         addGame ?
         <button onClick={handleAddGame}>Back To All Games</button> :

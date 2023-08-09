@@ -7,7 +7,7 @@ class GamesController < ApplicationController
   end
 
   def index
-    games = Game.all
+    games = Game.all.order("game_title ASC")
     render json: games
   end
 
