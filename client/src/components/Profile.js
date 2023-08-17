@@ -4,8 +4,11 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function Profile({ setUser }){
   const history = useHistory()
+  const [errors, setErrors] = useState(null)
   const user = useContext(userContext)
   const [showEditForm, setShowEditForm] = useState(false)
+
+  const errorsToDisplay = errors ? errors.map(err => <p key={err} className="error">{err}</p>) : null
   
   const prefilledFormInfo = {
     "user_name": user.user_name,
@@ -63,7 +66,10 @@ function Profile({ setUser }){
           setFormData(prefilledFormInfo)
         })
       } else {
-        window.alert("Error with updating users information on server, please try again!")
+        res.json()
+        .then(d => {
+          setErrors(d.errors)
+        })
       }
     }).catch(err => window.alert(err))
   }
@@ -78,6 +84,7 @@ function Profile({ setUser }){
       {showEditForm ?
         <>
           <h3>EDITING USER PROFILE</h3>
+          {errorsToDisplay}
           <form onSubmit={handleSubmit}>
             <strong>First Name: </strong>
               <input
@@ -116,7 +123,6 @@ function Profile({ setUser }){
               <input
                 type='password'
                 name='password'
-                required={true}
                 value={formData.password}
                 onChange={handleFormChange}>
               </input>
@@ -125,7 +131,6 @@ function Profile({ setUser }){
               <input
                 type='password'
                 name='password_confirmation'
-                required={true}
                 value={formData.password_confirmation}
                 onChange={handleFormChange}>
               </input>

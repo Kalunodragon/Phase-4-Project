@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def update
     user = find_user
     if (params[:password] == params[:password_confirmation])
-      user.update(user_params)
+      user.update!(user_params)
       render json: user, status: :ok
     else
       render json: { errors: "Please make sure passwords match and try again" }, status: :unprocessable_entity
