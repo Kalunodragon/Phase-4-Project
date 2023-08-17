@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function SignUpForm({ setUserLogIn }){
   const history = useHistory()
+  const [errors, setErrors] = useState(null)
   const emptyFormData = {
     "first_name":"",
     "last_name":"",
@@ -14,6 +15,7 @@ function SignUpForm({ setUserLogIn }){
     "image_url":""
   }
   const [formData, setFormData] = useState(emptyFormData)
+  const errorsToDisplay = errors ? errors.map(err => <p key={err} className="error">{err}</p>) : null
 
   function handleChange(e){
     const location = e.target.name
@@ -44,9 +46,10 @@ function SignUpForm({ setUserLogIn }){
         .then(history.push('/'))
       } else {
         res.json()
-        .then(d => console.log(d))
-        window.alert("There was an issue with a sign up on the server, please try again!")
-        // Use error on the front to post server errors to front end
+        .then(d => {
+          setErrors(d.errors)
+          console.log(d.errors)
+        })
       }
     }))
     .catch(err => window.alert(err))
@@ -55,6 +58,7 @@ function SignUpForm({ setUserLogIn }){
   return(
     <>
       <h1>Sign up form section</h1>
+      {errorsToDisplay}
       <form onSubmit={handleSubmit}>
             <strong>First Name: </strong>
               <input
@@ -102,7 +106,6 @@ function SignUpForm({ setUserLogIn }){
               <input
                 type='password'
                 name='password'
-                required={true}
                 value={formData.password}
                 onChange={handleChange}>
               </input>
@@ -111,7 +114,6 @@ function SignUpForm({ setUserLogIn }){
               <input
                 type='password'
                 name='password_confirmation'
-                required={true}
                 value={formData.password_confirmation}
                 onChange={handleChange}>
               </input>
