@@ -5,6 +5,8 @@ function ReviewForm({ game, setReviews, handleState }){
     "game_id": game.id,
     "thoughts":""
   }
+  const [errors, setErrors] = useState(null)
+  const errorsToDisplay = errors ? errors.map(err => <p key={err} className="error">{err}</p>) : null
 
   const [formData, setFormData] = useState(emptyForm)
 
@@ -31,13 +33,15 @@ function ReviewForm({ game, setReviews, handleState }){
       if(res.ok){
         res.json()
         .then((d)=>{
-          // console.log(d)
           setReviews(d)
           setFormData(emptyForm)
           handleState()
         })
       } else {
-        window.alert("There was an issue with the review creation on the server, please try again!")
+        res.json()
+        .then(d => {
+          setErrors(d.errors)
+        })
       }
     })
     .catch(err => window.alert(err))
@@ -45,6 +49,7 @@ function ReviewForm({ game, setReviews, handleState }){
 
   return(
     <div className="review-form">
+      {errorsToDisplay}
       <form onSubmit={handleSubmit}>
         <strong>Review: </strong>
         <textarea
