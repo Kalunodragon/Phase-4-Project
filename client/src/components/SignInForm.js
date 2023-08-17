@@ -4,13 +4,15 @@ import { userContext } from "./App";
 
 function SignInForm({ setUserLogIn }){
   const history = useHistory()
+  const [errors, setErrors] = useState(null)
   const user = useContext(userContext)
   const empty = {
     "user_name": "",
     "password": ""
   }
   const [formData, setFormData] = useState(empty)
-  
+  const errorsToDisplay = errors ? <p className="error">{errors}</p> : null
+
   function handleChange(e){
     const location = e.target.name
     const info = e.target.value
@@ -23,7 +25,7 @@ function SignInForm({ setUserLogIn }){
 
   function handleSubmit(e){
     e.preventDefault()
-    console.log(formData)
+    // console.log(formData)
     sendLogIn(formData)
     setFormData(empty)
   }
@@ -40,13 +42,14 @@ function SignInForm({ setUserLogIn }){
       if(res.ok){
         res.json()
         .then((d) => {
-          // console.log(d)
-          // console.log("success")
           setUserLogIn(d)
           history.push('/')
         })
       } else {
-        window.alert("Check Username and password and try again!")
+        res.json()
+        .then(d => {
+          setErrors(d.error)
+        })
       }
     })
     .catch((err) => window.alert(err))
@@ -60,6 +63,7 @@ function SignInForm({ setUserLogIn }){
 
   return(
     <>
+      {errorsToDisplay}
       <form>
         <strong>Username:</strong>
           <input
