@@ -23,6 +23,9 @@ function Profile({ setUser }){
   const [formData, setFormData] = useState(prefilledFormInfo)
 
   function handleEditButton(){
+    if(showEditForm){
+      setErrors(null)
+    }
     setShowEditForm(v => !v)
   }
 
