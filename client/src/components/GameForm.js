@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 function GameForm({ handleAddGame, setGames }){
+  const [errors, setErrors] = useState(null)
   const emptyForm = {
     'game_title' : '',
     'platform' : '',
@@ -8,6 +9,8 @@ function GameForm({ handleAddGame, setGames }){
     'release_year' : 2000
   }
   const [formData, setFormData] = useState(emptyForm)
+
+  const errorsToDisplay = errors ? errors.map(err => <p key={err} className="error">{err}</p>) : null
 
   function handleChange(e){
     const location = e.target.name
@@ -48,13 +51,15 @@ function GameForm({ handleAddGame, setGames }){
       if(res.ok){
         res.json()
         .then((d) => {
-          // console.log(d)
           setGames(d)
           setFormData(emptyForm)
           handleAddGame()
         })
       } else {
-        window.alert("There was an issue creating a game on the server, please try again")
+        res.json()
+        .then(d => {
+          setErrors(d.errors)
+        })
       }
     })
     .catch((err) => window.alert(err))
@@ -62,6 +67,7 @@ function GameForm({ handleAddGame, setGames }){
 
   return(
     <div>
+      {errorsToDisplay}
       <form onSubmit={handleSubmit}>
         <strong>Title: </strong>
           <input
