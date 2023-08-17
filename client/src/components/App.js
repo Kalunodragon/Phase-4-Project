@@ -25,7 +25,6 @@ function App(){
       } else {
         setUser(null)
         setLogCheck(true)
-        // console.log("there is no user signed in")
       }
     })
     .catch(err => window.alert(err))
