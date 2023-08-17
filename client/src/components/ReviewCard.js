@@ -6,6 +6,8 @@ function ReviewCard({ rev, setFilteredReviews, setReviews }){
   const user = useContext(userContext)
   const [editState, setEditState] = useState(false)
   const tagName = ((user ? user.id : null) === rev.user_id ? "logged-in-div" : "review-div")
+  const date = new Date(rev.created_at).toDateString()
+  console.log(date)
 
   function handleDelete(){
     // console.log(rev.id)
@@ -40,7 +42,7 @@ function ReviewCard({ rev, setFilteredReviews, setReviews }){
     <div className={tagName}>
       {editState ?
         <ReviewEditForm rev={rev} setReviews={setReviews} setEditState={setEditState}/> :
-        <p>Thought created at: {rev.created_at} -- {rev.thoughts}</p>}
+        <p>Thought created: {date} -- {rev.thoughts}</p>}
       {user ? user.id === rev.user_id ? <button onClick={handleDelete}>Delete</button> : null : null}
       {user ? user.id === rev.user_id ? <button onClick={showEdit}>{editState ? "Hide Edit" : "Edit"}</button> : null : null}
     </div>
