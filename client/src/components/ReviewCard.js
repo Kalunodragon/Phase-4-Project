@@ -7,7 +7,6 @@ function ReviewCard({ rev, setFilteredReviews, setReviews }){
   const [editState, setEditState] = useState(false)
   const tagName = ((user ? user.id : null) === rev.user_id ? "logged-in-div" : "review-div")
   const date = new Date(rev.created_at).toDateString()
-  console.log(date)
 
   function handleDelete(){
     // console.log(rev.id)
