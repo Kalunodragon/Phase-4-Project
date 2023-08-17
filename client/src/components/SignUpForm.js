@@ -48,7 +48,6 @@ function SignUpForm({ setUserLogIn }){
         res.json()
         .then(d => {
           setErrors(d.errors)
-          console.log(d.errors)
         })
       }
     }))
