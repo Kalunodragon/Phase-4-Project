@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { userContext } from "./App";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function Profile({ setUser }){
+  const history = useHistory()
   const user = useContext(userContext)
   const [showEditForm, setShowEditForm] = useState(false)
   
@@ -38,6 +40,7 @@ function Profile({ setUser }){
         method: "DELETE"
       })
       .then(window.alert(`${user.first_name}, your account has been succesfully deleted.`))
+      .then(history.push('/'))
     }
   }
 
