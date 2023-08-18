@@ -36,8 +36,6 @@ function ReviewEditForm({ rev, setReviews, setEditState }){
             setReviews(d)
             setEditState()
           })
-        } else {
-          window.alert("There was an error with the update on the server, please try again!")
         }
       })
       .catch((err) => window.alert(err))

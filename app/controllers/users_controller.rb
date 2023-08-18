@@ -33,8 +33,12 @@ class UsersController < ApplicationController
 
   def destroy
     user = find_user
-    user.destroy
-    render json: user, status: :ok
+    if(session[:user_id] === user.id)
+      user.destroy
+      render json: user, status: :ok
+    else
+      render json: { errors: "Only a User can delete their own account!" }, status: :unauthorized
+    end
   end
 
   private
