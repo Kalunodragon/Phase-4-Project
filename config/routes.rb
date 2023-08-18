@@ -19,10 +19,11 @@ Rails.application.routes.draw do
   delete "/log_out", to: "sessions#destroy"
 
   # reviews Routes
-  post "/review", to: "reviews#create"
-  get "/review", to: "reviews#index"
-  delete "/review", to: "reviews#destroy"
-  patch "/review", to: "reviews#update"
+  resources :reviews, only: [:create, :index, :update, :destroy]
+  # post "/reviews", to: "reviews#create"
+  # get "/reviews", to: "reviews#index"
+  # patch "/reviews/:id", to: "reviews#update"
+  # delete "/reviews/:id", to: "reviews#destroy"
 
   # games Routes
   resources :games, only: [:index, :create]

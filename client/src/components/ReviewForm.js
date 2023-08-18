@@ -22,7 +22,7 @@ function ReviewForm({ game, setReviews, handleState }){
 
   function handleSubmit(e){
     e.preventDefault()
-    fetch('/review',{
+    fetch('/reviews',{
       method: "POST",
       headers:{
         "Content-Type":"application/json"

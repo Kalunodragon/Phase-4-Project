@@ -22,7 +22,7 @@ function ReviewEditForm({ rev, setReviews, setEditState }){
     e.preventDefault()
     const answer = window.confirm(`Change review from: ${rev.thoughts} \n\nTo: ${formData.thoughts}`)
     if(answer === true){
-      fetch('/review',{
+      fetch(`/reviews/${rev.id}`,{
         method: "PATCH",
         headers:{
           "Content-Type":"application/json"
@@ -33,7 +33,6 @@ function ReviewEditForm({ rev, setReviews, setEditState }){
         if(res.ok){
           res.json()
           .then((d)=>{
-            // console.log(d)
             setReviews(d)
             setEditState()
           })

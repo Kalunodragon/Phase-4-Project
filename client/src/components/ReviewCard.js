@@ -9,22 +9,15 @@ function ReviewCard({ rev, setFilteredReviews, setReviews }){
   const date = new Date(rev.created_at).toDateString()
 
   function handleDelete(){
-    // console.log(rev.id)
-    const deleteInfo = {"thought_id" : rev.id}
     const answer = window.confirm(`The following review will be deleted is that ok? : ${rev.thoughts}`)
     if(answer === true){
-      fetch('/review',{
-        method: "DELETE",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body: JSON.stringify(deleteInfo)
+      fetch(`/reviews/${rev.id}`,{
+        method: "DELETE"
       })
       .then((res)=>{
         if(res.ok){
           res.json()
           .then((d)=>{
-            // console.log(d)
             setFilteredReviews(d)
           })
         }
