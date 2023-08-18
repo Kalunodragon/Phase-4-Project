@@ -40,7 +40,7 @@ function GameForm({ handleAddGame, setGames }){
     //   'release_year' : formData.
     // }
 
-    fetch('/game',{
+    fetch('/games',{
       method: "POST",
       headers:{
         'Content-Type':'application/json'

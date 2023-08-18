@@ -10,7 +10,7 @@ function AllGameCards(){
   const [addGame, setAddGame] = useState(false)
 
   useEffect(()=>{
-    fetch('/game')
+    fetch('/games')
     .then((res) =>{
       if(res.ok){
         res.json()

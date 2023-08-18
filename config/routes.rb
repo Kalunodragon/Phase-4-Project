@@ -4,14 +4,17 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
   # get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 # Move over to rescorces and restful routes (plurals)
+# upgrade to V6 Dom
 
   # User Routes
-  post "/user", to: "users#create"
-  get "/user", to: "users#show"
-  patch "/user", to: "users#update"
-  delete "/user", to: "users#destroy"
-
+  resources :users, only: [:create, :show, :update, :destroy]
+  # post "/users", to: "users#create"
+  # get "/users", to: "users#show"
+  # patch "/users/:id", to: "users#update"
+  # delete "/users/:id", to: "users#destroy"
+  
   # Sessions Routes
+  get "/user", to: "users#show"
   post "/log_in", to: "sessions#create"
   delete "/log_out", to: "sessions#destroy"
 
@@ -22,8 +25,8 @@ Rails.application.routes.draw do
   patch "/review", to: "reviews#update"
 
   # games Routes
-  get "/game", to: "games#index"
-  post "/game", to: "games#create"
-  # get "/test", to: "games#show"
+  resources :games, only: [:index, :create]
+  # get "/games", to: "games#index"
+  # post "/games", to: "games#create"
 
 end

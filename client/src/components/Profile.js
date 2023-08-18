@@ -42,7 +42,7 @@ function Profile({ setUser }){
   function handleDelete(){
     let choice = window.confirm(`${user.first_name}, your account will be deleted if you continue!`)
     if(choice === true){
-      fetch('/user',{
+      fetch(`/users/${user.id}`,{
         method: "DELETE"
       })
       .then(window.alert(`${user.first_name}, your account has been succesfully deleted.`))
@@ -52,8 +52,8 @@ function Profile({ setUser }){
 
   function handleSubmit(e){
     e.preventDefault()
-    // console.log(formData)
-    fetch("/user",{
+    // console.log(user.id)
+    fetch(`/users/${user.id}`,{
       method: "PATCH",
       headers: {
         "Content-Type":"application/json"
