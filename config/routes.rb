@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 # Move over to rescorces and restful routes (plurals)
 # upgrade to V6 Dom
 
+  # get "/many_reviews/:num", to: "games#many_reviews"
+
   # User Routes
   resources :users, only: [:create, :show, :update, :destroy]
   # post "/users", to: "users#create"

@@ -29,6 +29,8 @@ class UsersController < ApplicationController
     else
       render json: { errors: "Please make sure passwords match and try again" }, status: :unprocessable_entity
     end
+
+    
   end
 
   def destroy

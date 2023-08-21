@@ -8,13 +8,14 @@ class ReviewsController < ApplicationController
 
   def create
       game = Game.find(params[:game_id])
-      thought = Review.create(user_id: session[:user_id], game_id: game.id, thoughts: params[:thoughts])
+      thought = @current_user.reviews.create(game_id: game.id, thoughts: params[:thoughts])
       render json: thought, status: :created
   end
 
   def destroy
-    thought = Review.find_by(id: params[:id])
-    if(thought.user_id == session[:user_id])
+    # thought = Review.find_by(id: params[:id])
+    thought = @current_user.reviews.find_by(id: params[:id])
+    if(thought)
       thought.destroy
       render json: thought, status: :ok
     else
@@ -24,8 +25,11 @@ class ReviewsController < ApplicationController
 
   def update
     game = Game.find(params[:game_id])
-    review = Review.find_by(id: params[:id])
-    review.update(user_id: session[:user_id], game_id: game.id, thoughts: params[:thoughts])
+    review = @current_user.reviews.find_by(id: params[:id])
+    if(review)
+      review.update(game_id: game.id, thoughts: params[:thoughts])
+    end
+    # review = Review.find_by(id: params[:id])
     render json: review, status: :ok
   end
 
